@@ -28,7 +28,10 @@ else
 	echo -e "$cyan[*] Creating required folders... $reset"
 	cd $app_name
 	mkdir static templates
-	touch main.py test.py config.py requirements.txt
+	touch main.py test.py config.py requirements.txt install.sh push.sh
+	git init
+	sleep 1
+	clear
 	chmod +x *
 	cd static
 	mkdir css js images
@@ -39,6 +42,22 @@ else
 	cd templates
 	touch index.html 404.html
 	cd ../ # inside root
+	
+	# Add content to the install.sh
+	echo "
+	clear
+	echo \"========----========\"
+	echo -e \"[*] Installing Required Modules...\"
+	echo \"========----========\"
+	pip install -r requirements.txt" > install.sh
+	
+	# Add content to the push.sh
+	echo "
+git add .
+read -p \"[*] Type Commit Message:\" msg
+git commit -m "$msg"
+git push
+	" > push.sh
 	
 	# Add content to the main.py file
 	echo -e "$yellow[*] Writing content into files... $reset"
@@ -54,7 +73,7 @@ def index():
 # Page Not Found Error Handling
 @app.errorhandler(404)
 def page_not_found(e):
-	return render_template("404.html")
+	return render_template('404.html')
 
 # Start app
 if __name__ == '__main__':
