@@ -12,3 +12,8 @@ bash <(curl -s remote_bash_script_url)
 bash <(curl -s https://raw.githubusercontent.com/fh-rabbi/Bash-Utility/main/create-flask-app.sh)
 ```
 
+### Create Express App
+```sh
+bash <(curl -s https://raw.githubusercontent.com/fh-rabbi/Bash-Utility/main/create-express-app.sh)
+```
+
